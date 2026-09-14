@@ -1,0 +1,537 @@
+/* Remove default spacing */
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+/* Whole page */
+body{
+    font-family:Arial, sans-serif;
+    background:#f4f6f9;
+}
+
+/* Navigation Bar */
+header{
+    background:#0d47a1;
+    color:white;
+    padding:15px 30px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+}
+
+/* Navigation Links */
+nav a{
+    color:white;
+    text-decoration:none;
+    margin-left:20px;
+    font-weight:bold;
+}
+
+/* Hover Effect */
+nav a:hover{
+    color:yellow;
+}
+
+/* Hero Section */
+section{
+    text-align:center;
+    padding:80px;
+}
+
+section h1{
+    font-size:45px;
+    color:#0d47a1;
+}
+
+section p{
+    font-size:20px;
+    margin-top:20px;
+    color:#555;
+}
+
+/* Buttons */
+button{
+    margin-top:30px;
+    padding:15px 30px;
+    background:#0d47a1;
+    color:white;
+    border:none;
+    border-radius:8px;
+    font-size:18px;
+    cursor:pointer;
+    margin-right:20px;
+}
+
+/* Button Hover */
+button:hover{
+    background:#1565c0;
+}
+
+.hero{
+    background:linear-gradient(135deg,#e3f2fd,#bbdefb,#90caf9);
+    padding:100px 20px;
+    text-align:center;
+}
+
+.hero h1{
+    font-size:50px;
+    color:#0d47a1;
+}
+
+.hero p{
+    max-width:700px;
+    margin:20px auto;
+    line-height:1.6;
+}
+
+.hero button{
+    background:#0d47a1;
+    color:white;
+    border:none;
+    padding:14px 35px;
+    margin:15px;
+    font-size:18px;
+    font-weight:bold;
+    border-radius:30px;
+    cursor:pointer;
+    transition:0.3s;
+    box-shadow:0 5px 12px rgba(0,0,0,0.2);
+}
+.hero button:hover{
+    background:#1565c0;
+    transform:translateY(-3px);
+    box-shadow:0 8px 18px rgba(0,0,0,0.3);
+}
+.login-box{
+    width:350px;
+    margin:80px auto;
+    padding:40px;
+    background:white;
+    box-shadow:0 0 15px gray;
+    border-radius:15px;
+    text-align:center;
+}
+
+.login-box h1{
+    color:#0d47a1;
+    margin-bottom:30px;
+}
+
+.login-box label{
+    display:block;
+    text-align:left;
+    margin-top:15px;
+}
+
+.login-box input{
+    width:100%;
+    padding:12px;
+    margin-top:8px;
+    border:1px solid #ccc;
+    border-radius:8px;
+}
+
+.login-box button{
+    margin-top:25px;
+    width:100%;
+    padding:12px;
+    background:#0d47a1;
+    color:white;
+    border:none;
+    border-radius:25px;
+    font-size:16px;
+    cursor:pointer;
+}
+
+.login-box button:hover{
+    background:#1565c0;
+}
+.dashboard{
+    text-align:center;
+    padding:50px 20px;
+}
+
+.dashboard h1{
+    color:#0d47a1;
+}
+
+.cards{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:25px;
+    margin-top:40px;
+}
+
+
+.card{
+    width:350px;
+    padding:20px;
+    background:white;
+    box-shadow:0 0 15px gray;
+    border-radius:15px;
+    text-align:center;
+}
+
+
+.card h2{
+    color:#0d47a1;
+}
+
+
+.card p{
+    line-height:1.5;
+}
+
+
+.card button{
+    margin-top:15px;
+    padding:10px 20px;
+}
+.job-form{
+    width:500px;
+    margin:50px auto;
+    padding:40px;
+    background:white;
+    box-shadow:0 0 15px gray;
+    border-radius:15px;
+}
+
+.job-form h1{
+    text-align:center;
+    color:#0d47a1;
+}
+
+.job-form textarea{
+    width:100%;
+    height:100px;
+    padding:12px;
+    margin-top:8px;
+    border-radius:8px;
+    border:1px solid #ccc;
+}
+.job-form label{
+    display:block;
+    text-align:left;
+    margin-top:15px;
+}
+
+.job-form input,
+.job-form textarea{
+    display:block;
+    width:100%;
+    padding:12px;
+    margin-top:8px;
+    border-radius:8px;
+    border:1px solid #ccc;
+}
+
+.job-form button{
+    margin-top:25px;
+    width:100%;
+}
+.student-table{
+    width:80%;
+    margin:40px auto;
+    border-collapse:collapse;
+    background:white;
+}
+
+.student-table th{
+    background:#0d47a1;
+    color:white;
+    padding:15px;
+}
+
+.student-table td{
+    padding:15px;
+    text-align:center;
+    border:1px solid #ddd;
+}
+
+.student-table tr:hover{
+    background:#f5f9ff;
+}
+.job-form select{
+    width:100%;
+    padding:12px;
+    margin-top:8px;
+    border:1px solid #ccc;
+    border-radius:8px;
+}
+footer{
+    background:#0d47a1;
+    color:white;
+    text-align:center;
+    padding:20px;
+    margin-top:50px;
+}
+
+footer p{
+    margin:5px 0;
+}
+.hero-image{
+    width:600px;
+    max-width:90%;
+    height:auto;
+    border-radius:15px;
+    margin-bottom:25px;
+}
+/* Feature Section */
+.features{
+    display:flex;
+    justify-content:center;
+    gap:30px;
+    padding:60px 20px;
+    flex-wrap:wrap;
+}
+
+/* Individual Feature Card */
+.feature-card{
+    width:300px;
+    background:white;
+    padding:25px;
+    border-radius:15px;
+    box-shadow:0 5px 15px rgba(0,0,0,0.2);
+    text-align:center;
+    transition:0.3s;
+}
+
+/* Hover Effect */
+.feature-card:hover{
+    transform:translateY(-10px);
+}
+
+/* Card Heading */
+.feature-card h2{
+    color:#0d47a1;
+    margin-bottom:15px;
+}
+
+/* Card Paragraph */
+.feature-card p{
+    color:#555;
+    line-height:1.6;
+}
+.hero h3{
+    margin-top:15px;
+    color:#333;
+    font-size:24px;
+    font-weight:normal;
+}
+/* Logo */
+.logo-container{
+    text-align:center;
+    padding:20px 0;
+    background:white;
+}
+
+.logo{
+    width:250px;
+    height:auto;
+}
+/* Why Choose Section */
+.why-choose{
+    padding:60px 20px;
+    background:#f8fbff;
+    text-align:center;
+}
+
+.why-choose h2{
+    color:#0d47a1;
+    margin-bottom:40px;
+    font-size:32px;
+}
+
+.why-boxes{
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:25px;
+}
+
+.why-box{
+    width:260px;
+    background:white;
+    padding:25px;
+    border-radius:15px;
+        box-shadow:0 5px 15px rgba(0,0,0,0.2);
+    transition:0.3s;
+}
+
+.why-box:hover{
+    transform:translateY(-10px);
+}
+
+.why-box h3{
+    color:#0d47a1;
+    margin-bottom:15px;
+}
+
+.why-box p{
+    color:#555;
+    line-height:1.6;
+}
+
+/* =========================
+   Loading Screen
+========================= */
+
+#loader{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:white;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    z-index:9999;
+}
+
+.spinner{
+    width:70px;
+    height:70px;
+    border:8px solid #ddd;
+    border-top:8px solid #0d47a1;
+    border-radius:50%;
+    animation:spin 1s linear infinite;
+}
+
+@keyframes spin{
+    0%{ transform:rotate(0deg); }
+    100%{ transform:rotate(360deg); }
+}
+
+#loader h2{
+    margin-top:20px;
+    color:#0d47a1;
+    font-size:28px;
+}
+
+/* =========================
+   Placement Statistics
+========================= */
+
+.stats{
+    padding:70px 20px;
+    background:#eaf4ff;
+    text-align:center;
+}
+
+.stats h2{
+    color:#0d47a1;
+    margin-bottom:40px;
+    font-size:32px;
+}
+
+.stats-container{
+    display:flex;
+    justify-content:center;
+    gap:30px;
+    flex-wrap:wrap;
+}
+
+.stat-card{
+    width:220px;
+    background:white;
+    padding:30px;
+    border-radius:15px;
+    box-shadow:0 5px 15px rgba(0,0,0,0.15);
+    transition:0.3s;
+}
+
+.stat-card:hover{
+    transform:translateY(-10px);
+}
+
+.stat-card h1{
+    color:#0d47a1;
+    font-size:40px;
+    margin-bottom:10px;
+}
+
+.stat-card p{
+    color:#555;
+    font-size:18px;
+}
+/* Dark Mode */
+.dark-mode{
+    background:#121212;
+    color:white;
+}
+
+.dark-mode header{
+    background:#000;
+}
+
+.dark-mode .hero{
+    background:#1e1e1e;
+}
+
+.dark-mode .feature-card,
+.dark-mode .why-box,
+.dark-mode .stat-card,
+.dark-mode .card,
+.dark-mode .login-box,
+.dark-mode .job-form{
+    background:#2b2b2b;
+    color:white;
+}
+
+.dark-mode h1,
+.dark-mode h2,
+.dark-mode h3,
+.dark-mode p{
+    color:white;
+}
+
+#darkModeBtn{
+    margin-left:20px;
+    padding:10px 20px;
+    border:none;
+    border-radius:20px;
+    background:#222;
+    color:white;
+    cursor:pointer;
+}
+
+#darkModeBtn:hover{
+    background:#444;
+}
+/* Date & Time */
+#datetime{
+    color:white;
+    font-size:16px;
+    font-weight:bold;
+    text-align:right;
+    margin-bottom:10px;
+}
+/* Navigation Bar */
+nav{
+    display:flex;
+    align-items:center;
+    gap:20px;
+    padding:10px 20px;
+}
+
+/* Push Admin to the right */
+.admin-link{
+    margin-left:auto;
+    text-decoration:none;
+    color:white;
+    font-weight:bold;
+    padding:8px 14px;
+    border:2px solid white;
+    border-radius:6px;
+    transition:0.3s;
+}
+
+.admin-link:hover{
+    background:white;
+    color:#0d47a1;
+}

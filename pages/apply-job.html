@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apply for Job - Smart Campus Placement Portal</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #f4f7fb;
+            min-height: 100vh;
+            padding: 30px 0;
+        }
+
+        .container {
+            width: 92%;
+            max-width: 700px;
+            margin: auto;
+        }
+
+        .card {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        h2 {
+            text-align: center;
+            color: #0d47a1;
+            margin-bottom: 25px;
+        }
+
+        .job-info {
+            background: #eef4ff;
+            padding: 18px;
+            border-radius: 8px;
+            margin-bottom: 25px;
+        }
+
+        .job-info p {
+            margin: 8px 0;
+        }
+
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 7px;
+        }
+
+        input,
+        textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 15px;
+        }
+
+        textarea {
+            resize: vertical;
+        }
+
+        button {
+            width: 100%;
+            padding: 13px;
+            border: none;
+            border-radius: 6px;
+            background: #0d47a1;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .back-btn {
+            display: block;
+            text-align: center;
+            margin-top: 15px;
+            color: #0d47a1;
+            text-decoration: none;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="card">
+
+        <h2>📝 Apply for Job</h2>
+
+        <div class="job-info">
+            <p><strong>Job:</strong> <span id="jobName">Web Developer</span></p>
+            <p><strong>Company:</strong> <span id="companyName">ABC Technologies</span></p>
+            <p><strong>Location:</strong> <span id="jobLocation">Chennai</span></p>
+            <p><strong>Salary:</strong> <span id="jobSalary">5 LPA</span></p>
+        </div>
+
+        <form id="applicationForm">
+
+            <div class="form-group">
+                <label for="name">Student Name</label>
+                <input type="text" id="name" value="Hema" required>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" value="hema@gmail.com" required>
+            </div>
+
+            <div class="form-group">
+                <label for="phone">Phone Number</label>
+                <input type="tel" id="phone" value="9876543210" required>
+            </div>
+
+            <div class="form-group">
+                <label for="resume">Resume (Optional)</label>
+                <input type="file" id="resume" accept=".pdf,.doc,.docx">
+            </div>
+
+            <div class="form-group">
+                <label for="message">Cover Message</label>
+                <textarea id="message" rows="5"
+                    placeholder="Write a short message..."></textarea>
+            </div>
+
+            <button type="submit">
+                ✅ Submit Application
+            </button>
+
+        </form>
+
+        <a href="student-jobs.html" class="back-btn">
+            ← Back to Jobs
+        </a>
+
+    </div>
+
+</div>
+
+<script>
+
+    const params = new URLSearchParams(window.location.search);
+    const job = params.get("job");
+
+    if (job === "dataanalyst") {
+
+        document.getElementById("jobName").textContent = "Data Analyst";
+        document.getElementById("companyName").textContent = "XYZ Solutions";
+        document.getElementById("jobLocation").textContent = "Bangalore";
+        document.getElementById("jobSalary").textContent = "6 LPA";
+
+    } else {
+
+        document.getElementById("jobName").textContent = "Web Developer";
+        document.getElementById("companyName").textContent = "ABC Technologies";
+        document.getElementById("jobLocation").textContent = "Chennai";
+        document.getElementById("jobSalary").textContent = "5 LPA";
+
+    }
+
+    document.getElementById("applicationForm").addEventListener("submit", function(event) {
+
+        event.preventDefault();
+
+        alert("✅ Application submitted successfully!");
+
+        window.location.href = "student-dashboard.html";
+
+    });
+
+</script>
+
+</body>
+</html>

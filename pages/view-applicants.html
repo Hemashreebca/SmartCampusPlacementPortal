@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Applicants - Smart Campus Placement Portal</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #f4f7fb;
+            min-height: 100vh;
+            padding: 30px 0;
+        }
+
+        .container {
+            width: 95%;
+            max-width: 1100px;
+            margin: auto;
+        }
+
+        h2 {
+            text-align: center;
+            color: #0d47a1;
+            margin-bottom: 25px;
+        }
+
+        .table-box {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 900px;
+        }
+
+        th,
+        td {
+            padding: 13px;
+            border-bottom: 1px solid #ddd;
+            text-align: left;
+        }
+
+        th {
+            background: #0d47a1;
+            color: white;
+        }
+
+        .status {
+            font-weight: bold;
+        }
+
+        button {
+            border: none;
+            padding: 7px 11px;
+            border-radius: 5px;
+            color: white;
+            cursor: pointer;
+            margin: 2px;
+        }
+
+        .select-btn {
+            background: #198754;
+        }
+
+        .reject-btn {
+            background: #dc3545;
+        }
+
+        .interview-btn {
+            background: #0d47a1;
+        }
+
+        .back-btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 11px 18px;
+            background: #0d47a1;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h2>👥 Job Applicants</h2>
+
+    <div class="table-box">
+
+        <table>
+
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Job</th>
+                    <th>Applied Date</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+
+            <tbody>
+
+                <tr>
+                    <td>Hema</td>
+                    <td>hema@gmail.com</td>
+                    <td>Web Developer</td>
+                    <td>15-08-2026</td>
+
+                    <td class="status">
+                        Pending
+                    </td>
+
+                    <td>
+                        <button class="select-btn"
+                                onclick="selectApplicant(this)">
+                            Select
+                        </button>
+
+                        <button class="reject-btn"
+                                onclick="rejectApplicant(this)">
+                            Reject
+                        </button>
+
+                        <button class="interview-btn"
+                                onclick="scheduleInterview()">
+                            Interview
+                        </button>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>Lavanya</td>
+                    <td>lavanya@gmail.com</td>
+                    <td>Web Developer</td>
+                    <td>16-08-2026</td>
+
+                    <td class="status">
+                        Pending
+                    </td>
+
+                    <td>
+                        <button class="select-btn"
+                                onclick="selectApplicant(this)">
+                            Select
+                        </button>
+
+                        <button class="reject-btn"
+                                onclick="rejectApplicant(this)">
+                            Reject
+                        </button>
+
+                        <button class="interview-btn"
+                                onclick="scheduleInterview()">
+                            Interview
+                        </button>
+                    </td>
+                </tr>
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+    <a href="company-dashboard.html" class="back-btn">
+        ← Back to Dashboard
+    </a>
+
+</div>
+
+<script>
+
+function selectApplicant(button) {
+    const row = button.closest("tr");
+    const status = row.querySelector(".status");
+
+    status.innerText = "Selected";
+
+    alert("✅ Applicant selected successfully!");
+}
+
+function rejectApplicant(button) {
+    const row = button.closest("tr");
+    const status = row.querySelector(".status");
+
+    status.innerText = "Rejected";
+
+    alert("❌ Applicant rejected.");
+}
+
+function scheduleInterview() {
+    window.location.href = "schedule-interview.html";
+}
+
+</script>
+
+</body>
+</html>

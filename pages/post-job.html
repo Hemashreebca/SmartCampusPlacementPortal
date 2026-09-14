@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Post Job - Smart Campus Placement Portal</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #f4f7fb;
+            min-height: 100vh;
+            padding: 30px 0;
+        }
+
+        .container {
+            width: 92%;
+            max-width: 800px;
+            margin: auto;
+        }
+
+        .card {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            text-align: center;
+            color: #0d47a1;
+            margin-bottom: 25px;
+        }
+
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 7px;
+        }
+
+        input,
+        textarea,
+        select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 15px;
+        }
+
+        textarea {
+            resize: vertical;
+        }
+
+        button {
+            width: 100%;
+            padding: 13px;
+            border: none;
+            border-radius: 6px;
+            background: #0d47a1;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .back-btn {
+            display: block;
+            text-align: center;
+            margin-top: 15px;
+            color: #0d47a1;
+            text-decoration: none;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="card">
+
+        <h2>💼 Post New Job</h2>
+
+        <form id="jobForm">
+
+            <div class="form-group">
+                <label for="jobTitle">Job Title</label>
+                <input type="text" id="jobTitle"
+                       value="Web Developer" required>
+            </div>
+
+            <div class="form-group">
+                <label for="company">Company Name</label>
+                <input type="text" id="company"
+                       value="ABC Technologies" required>
+            </div>
+
+            <div class="form-group">
+                <label for="location">Job Location</label>
+                <input type="text" id="location"
+                       value="Chennai" required>
+            </div>
+
+            <div class="form-group">
+                <label for="salary">Salary</label>
+                <input type="text" id="salary"
+                       value="5 LPA" required>
+            </div>
+
+            <div class="form-group">
+                <label for="jobType">Job Type</label>
+                <select id="jobType">
+                    <option>Full Time</option>
+                    <option>Part Time</option>
+                    <option>Internship</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="skills">Required Skills</label>
+                <input type="text" id="skills"
+                       value="HTML, CSS, JavaScript">
+            </div>
+
+            <div class="form-group">
+                <label for="description">Job Description</label>
+                <textarea id="description" rows="5">We are looking for a skilled Web Developer to join our team.</textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="deadline">Application Deadline</label>
+                <input type="date" id="deadline"
+                       value="2026-09-30">
+            </div>
+
+            <button type="submit">✅ Post Job</button>
+
+        </form>
+
+        <a href="company-dashboard.html" class="back-btn">
+            ← Back to Dashboard
+        </a>
+
+    </div>
+
+</div>
+
+<script>
+    document.getElementById("jobForm").addEventListener("submit", function(event) {
+        event.preventDefault();
+
+        alert("✅ Job posted successfully!");
+
+        window.location.href = "company-dashboard.html";
+    });
+</script>
+
+</body>
+</html>

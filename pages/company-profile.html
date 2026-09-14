@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Company Profile - Smart Campus Placement Portal</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #f4f7fb;
+            min-height: 100vh;
+            padding: 30px 0;
+        }
+
+        .container {
+            width: 92%;
+            max-width: 800px;
+            margin: auto;
+        }
+
+        .card {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            text-align: center;
+            color: #0d47a1;
+            margin-bottom: 25px;
+        }
+
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 7px;
+        }
+
+        input,
+        textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 15px;
+        }
+
+        textarea {
+            resize: vertical;
+        }
+
+        .buttons {
+            text-align: center;
+            margin-top: 25px;
+        }
+
+        button,
+        .back-btn {
+            display: inline-block;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 6px;
+            text-decoration: none;
+            font-size: 15px;
+            cursor: pointer;
+            margin: 5px;
+        }
+
+        button {
+            background: #0d47a1;
+            color: white;
+        }
+
+        .back-btn {
+            background: #777;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="card">
+
+        <h2>🏢 Company Profile</h2>
+
+        <form id="companyProfileForm">
+
+            <div class="form-group">
+                <label for="companyName">Company Name</label>
+                <input type="text" id="companyName"
+                       value="ABC Technologies" required>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Company Email</label>
+                <input type="email" id="email"
+                       value="hr@abctech.com" required>
+            </div>
+
+            <div class="form-group">
+                <label for="phone">Contact Number</label>
+                <input type="tel" id="phone"
+                       value="9876543210">
+            </div>
+
+            <div class="form-group">
+                <label for="location">Location</label>
+                <input type="text" id="location"
+                       value="Chennai">
+            </div>
+
+            <div class="form-group">
+                <label for="website">Website</label>
+                <input type="url" id="website"
+                       value="https://www.abctech.com">
+            </div>
+
+            <div class="form-group">
+                <label for="description">Company Description</label>
+                <textarea id="description" rows="5">ABC Technologies is a technology company providing software development and IT solutions.</textarea>
+            </div>
+
+            <div class="buttons">
+                <button type="submit">💾 Save Profile</button>
+
+                <a href="company-dashboard.html" class="back-btn">
+                    ← Back
+                </a>
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+<script>
+    document.getElementById("companyProfileForm").addEventListener("submit", function(event) {
+        event.preventDefault();
+        alert("✅ Company profile saved successfully!");
+    });
+</script>
+
+</body>
+</html>

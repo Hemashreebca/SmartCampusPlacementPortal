@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Smart Campus Placement Portal</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #f4f7fb;
+            min-height: 100vh;
+            padding: 30px 0;
+        }
+
+        .container {
+            width: 92%;
+            max-width: 600px;
+            margin: auto;
+        }
+
+        .welcome {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .welcome h2 {
+            color: #0d47a1;
+            margin-bottom: 8px;
+        }
+
+        .welcome p {
+            color: #666;
+        }
+
+        .cards {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .card {
+            width: 100%;
+            background: white;
+            padding: 25px;
+            text-align: center;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+        }
+
+        .icon {
+            font-size: 40px;
+            margin-bottom: 12px;
+        }
+
+        .card h3 {
+            color: #0d47a1;
+            margin-bottom: 10px;
+        }
+
+        .card p {
+            color: #666;
+            margin-bottom: 15px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 10px 18px;
+            background: #0d47a1;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+        }
+
+        .logout {
+            background: #c62828;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="welcome">
+        <h2>Welcome, Admin 👋</h2>
+        <p>Admin Dashboard</p>
+    </div>
+
+    <div class="cards">
+
+        <div class="card">
+            <div class="icon">👨‍🎓</div>
+
+            <h3>Manage Students</h3>
+
+            <p>
+                View and manage registered students.
+            </p>
+
+            <a href="manage-students.html" class="btn">
+                Open
+            </a>
+        </div>
+
+        <div class="card">
+            <div class="icon">🏢</div>
+
+            <h3>Manage Companies</h3>
+
+            <p>
+                View and manage participating companies.
+            </p>
+
+            <a href="manage-companies.html" class="btn">
+                Open
+            </a>
+        </div>
+
+        <div class="card">
+            <div class="icon">📊</div>
+
+            <h3>Placement Reports</h3>
+
+            <p>
+                View placement reports and statistics.
+            </p>
+
+            <a href="placement-reports.html" class="btn">
+                Open
+            </a>
+        </div>
+
+        <div class="card">
+            <div class="icon">📋</div>
+
+            <h3>Placement Status</h3>
+
+            <p>
+                View student placement status.
+            </p>
+
+            <a href="placement-status.html" class="btn">
+                Open
+            </a>
+        </div>
+
+        <div class="card">
+            <div class="icon">⚙️</div>
+
+            <h3>System Settings</h3>
+
+            <p>
+                Manage portal settings.
+            </p>
+
+            <a href="system-settings.html" class="btn">
+                Open
+            </a>
+        </div>
+
+        <div class="card">
+            <div class="icon">🚪</div>
+
+            <h3>Logout</h3>
+
+            <p>
+                Return to the home page.
+            </p>
+
+            <a href="../index.html" class="btn logout">
+                Logout
+            </a>
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>

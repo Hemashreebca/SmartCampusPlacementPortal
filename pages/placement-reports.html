@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Placement Reports - Smart Campus Placement Portal</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #f4f7fb;
+            min-height: 100vh;
+            padding: 30px 0;
+        }
+
+        .container {
+            width: 92%;
+            max-width: 1000px;
+            margin: auto;
+        }
+
+        h2 {
+            text-align: center;
+            color: #0d47a1;
+            margin-bottom: 25px;
+        }
+
+        .stats {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .stat-card {
+            width: 100%;
+            background: white;
+            padding: 25px;
+            text-align: center;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+        }
+
+        .stat-card h3 {
+            color: #0d47a1;
+            margin-bottom: 10px;
+        }
+
+        .number {
+            font-size: 32px;
+            font-weight: bold;
+        }
+
+        .summary {
+            background: white;
+            padding: 25px;
+            margin-top: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+        }
+
+        .summary h3 {
+            color: #0d47a1;
+            margin-bottom: 15px;
+        }
+
+        .summary p {
+            margin: 10px 0;
+        }
+
+        .back-btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 11px 18px;
+            background: #0d47a1;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h2>📊 Placement Reports</h2>
+
+    <div class="stats">
+
+        <div class="stat-card">
+            <h3>Total Students</h3>
+            <div class="number">250</div>
+        </div>
+
+        <div class="stat-card">
+            <h3>Total Companies</h3>
+            <div class="number">35</div>
+        </div>
+
+        <div class="stat-card">
+            <h3>Students Placed</h3>
+            <div class="number">180</div>
+        </div>
+
+        <div class="stat-card">
+            <h3>Placement Percentage</h3>
+            <div class="number">72%</div>
+        </div>
+
+    </div>
+
+    <div class="summary">
+
+        <h3>Placement Summary</h3>
+
+        <p>
+            <strong>ABC Technologies:</strong>
+            15 students selected
+        </p>
+
+        <p>
+            <strong>XYZ Solutions:</strong>
+            12 students selected
+        </p>
+
+        <p>
+            <strong>Other Companies:</strong>
+            153 students selected
+        </p>
+
+        <p>
+            <strong>Overall Placement:</strong>
+            180 out of 250 students
+        </p>
+
+    </div>
+
+    <a href="admin-dashboard.html" class="back-btn">
+        ← Back to Dashboard
+    </a>
+
+</div>
+
+</body>
+</html>

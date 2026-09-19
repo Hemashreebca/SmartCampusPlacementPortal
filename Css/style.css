@@ -534,4 +534,279 @@ nav{
 .admin-link:hover{
     background:white;
     color:#0d47a1;
+}/* =========================================
+   MOBILE RESPONSIVE DESIGN
+   Smart Campus Placement Portal
+========================================= */
+
+html,
+body {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+/* Header */
+header {
+    width: 100%;
+    padding: 15px 10px;
+}
+
+/* Logo */
+.logo-container {
+    width: 100%;
+    padding: 15px 10px;
+}
+
+.logo {
+    width: 220px;
+    max-width: 85%;
+    height: auto;
+}
+
+/* Navigation */
+nav {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 5px;
+}
+
+nav a {
+    margin-left: 0;
+    padding: 7px 8px;
+    font-size: 14px;
+    white-space: nowrap;
+}
+
+/* Admin button */
+.admin-link {
+    margin-left: 0;
+    padding: 7px 10px;
+    font-size: 14px;
+}
+
+/* Dark mode button */
+#darkModeBtn {
+    margin-left: 0;
+    margin-top: 8px;
+    padding: 9px 16px;
+    font-size: 14px;
+}
+
+/* Date and time */
+#datetime {
+    text-align: center;
+    font-size: 14px;
+    margin-bottom: 8px;
+}
+
+/* Hero */
+.hero {
+    width: 100%;
+    padding: 50px 15px;
+}
+
+.hero h1 {
+    font-size: 36px;
+    line-height: 1.2;
+    word-wrap: break-word;
+}
+
+.hero h3 {
+    font-size: 20px;
+}
+
+.hero p {
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+.hero-image {
+    width: 100%;
+    max-width: 500px;
+    height: auto;
+}
+
+/* Normal sections */
+section {
+    width: 100%;
+    padding: 45px 15px;
+}
+
+section h1 {
+    font-size: 36px;
+    line-height: 1.2;
+}
+
+section p {
+    font-size: 17px;
+}
+
+/* Buttons */
+button {
+    max-width: 100%;
+}
+
+/* Feature cards */
+.features {
+    width: 100%;
+    padding: 40px 15px;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.feature-card {
+    width: 100%;
+    max-width: 350px;
+}
+
+/* Why Choose */
+.why-choose {
+    width: 100%;
+    padding: 45px 15px;
+}
+
+.why-choose h2 {
+    font-size: 28px;
+}
+
+.why-boxes {
+    flex-direction: column;
+    align-items: center;
+}
+
+.why-box {
+    width: 100%;
+    max-width: 350px;
+}
+
+/* Statistics */
+.stats {
+    width: 100%;
+    padding: 45px 15px;
+}
+
+.stats h2 {
+    font-size: 28px;
+}
+
+.stats-container {
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.stat-card {
+    width: 100%;
+    max-width: 300px;
+}
+
+/* Login boxes */
+.login-box,
+.login-container {
+    width: 90%;
+    max-width: 400px;
+    margin: 40px auto;
+    padding: 25px;
+}
+
+/* Dashboard cards */
+.dashboard {
+    width: 100%;
+    padding: 40px 15px;
+}
+
+.cards {
+    width: 100%;
+}
+
+.card,
+.dashboard-card {
+    width: 90%;
+    max-width: 350px;
+}
+
+/* Job form */
+.job-form {
+    width: 92%;
+    max-width: 500px;
+    margin: 35px auto;
+    padding: 25px;
+}
+
+/* Tables */
+.student-table {
+    width: 95%;
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+}
+
+/* Footer */
+footer {
+    width: 100%;
+    padding: 18px 10px;
+    font-size: 14px;
+}
+
+
+/* =========================================
+   SMALL PHONES
+========================================= */
+
+@media (max-width: 480px) {
+
+    .logo {
+        width: 200px;
+    }
+
+    nav {
+        gap: 5px;
+    }
+
+    nav a {
+        font-size: 13px;
+        padding: 6px 7px;
+    }
+
+    .admin-link {
+        font-size: 13px;
+        padding: 6px 8px;
+    }
+
+    #darkModeBtn {
+        font-size: 13px;
+        padding: 8px 14px;
+    }
+
+    .hero {
+        padding: 40px 12px;
+    }
+
+    .hero h1 {
+        font-size: 30px;
+    }
+
+    .hero h3 {
+        font-size: 18px;
+    }
+
+    section h1 {
+        font-size: 30px;
+    }
+
+    .hero-image {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .feature-card,
+    .why-box {
+        max-width: 330px;
+    }
 }

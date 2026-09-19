@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Student Signup - Smart Campus Placement Portal</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #f4f7fb;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .signup-card {
+            width: 100%;
+            max-width: 500px;
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            text-align: center;
+            color: #0d47a1;
+            margin-bottom: 25px;
+        }
+
+        .form-group {
+            margin-bottom: 16px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 7px;
+            font-weight: bold;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 15px;
+        }
+
+        button {
+            width: 100%;
+            padding: 13px;
+            border: none;
+            border-radius: 6px;
+            background: #0d47a1;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 5px;
+        }
+
+        button:hover {
+            opacity: 0.9;
+        }
+
+        button:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .message {
+            text-align: center;
+            margin-top: 15px;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        .error {
+            color: #d32f2f;
+        }
+
+        .success {
+            color: #2e7d32;
+        }
+
+        .login-link {
+            text-align: center;
+            margin-top: 18px;
+            font-size: 14px;
+        }
+
+        .login-link a,
+        .back-link {
+            color: #0d47a1;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .back-link {
+            display: block;
+            text-align: center;
+            margin-top: 15px;
+            font-weight: normal;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="signup-card">
+
+    <h2>👨‍🎓 Student Signup</h2>
+
+    <form id="studentSignupForm">
+
+        <div class="form-group">
+            <label for="name">Full Name</label>
+            <input
+                type="text"
+                id="name"
+                placeholder="Enter your full name"
+                required
+            >
+        </div>
+
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input
+                type="email"
+                id="email"
+                placeholder="Enter your email"
+                required
+            >
+        </div>
+
+        <div class="form-group">
+            <label for="phone">Phone Number</label>
+            <input
+                type="tel"
+                id="phone"
+                placeholder="Enter your phone number"
+                required
+            >
+        </div>
+
+        <div class="form-group">
+            <label for="college">College</label>
+            <input
+                type="text"
+                id="college"
+                placeholder="Enter your college name"
+                required
+            >
+        </div>
+
+        <div class="form-group">
+            <label for="department">Department</label>
+            <input
+                type="text"
+                id="department"
+                placeholder="Enter your department"
+                required
+            >
+        </div>
+
+        <div class="form-group">
+            <label for="skills">Skills</label>
+            <input
+                type="text"
+                id="skills"
+                placeholder="Example: HTML, CSS, JavaScript"
+            >
+        </div>
+
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input
+                type="password"
+                id="password"
+                placeholder="Create a password"
+                minlength="6"
+                required
+            >
+        </div>
+
+        <div class="form-group">
+            <label for="confirmPassword">Confirm Password</label>
+            <input
+                type="password"
+                id="confirmPassword"
+                placeholder="Re-enter your password"
+                minlength="6"
+                required
+            >
+        </div>
+
+        <button type="submit" id="signupButton">
+            Create Account
+        </button>
+
+        <div id="message" class="message"></div>
+
+    </form>
+
+    <div class="login-link">
+        Already have an account?
+        <a href="student-login.html">Login</a>
+    </div>
+
+    <a href="../index.html" class="back-link">
+        ← Back to Home
+    </a>
+
+</div>
+
+<!-- Supabase Library -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<!-- Supabase Configuration -->
+<script src="../supabase-config.js"></script>
+
+<script>
+    document
+        .getElementById("studentSignupForm")
+        .addEventListener("submit", async function(event) {
+
+            event.preventDefault();
+
+            const name = document.getElementById("name").value.trim();
+            const email = document.getElementById("email").value.trim();
+            const phone = document.getElementById("phone").value.trim();
+            const college = document.getElementById("college").value.trim();
+            const department = document.getElementById("department").value.trim();
+            const skills = document.getElementById("skills").value.trim();
+            const password = document.getElementById("password").value;
+            const confirmPassword =
+                document.getElementById("confirmPassword").value;
+
+            const message = document.getElementById("message");
+            const signupButton = document.getElementById("signupButton");
+
+            message.textContent = "";
+            message.className = "message";
+
+            if (password !== confirmPassword) {
+                message.textContent = "Passwords do not match.";
+                message.className = "message error";
+                return;
+            }
+
+            signupButton.disabled = true;
+            signupButton.textContent = "Creating Account...";
+
+            try {
+
+                /*
+                 * Create Supabase Authentication account
+                 */
+                const { data, error } =
+                    await supabaseClient.auth.signUp({
+                        email: email,
+                        password: password
+                    });
+
+                if (error) {
+                    throw error;
+                }
+
+                /*
+                 * Save student profile information
+                 */
+                if (data.user) {
+
+                    const { error: profileError } =
+                        await supabaseClient
+                            .from("students")
+                            .insert([
+                                {
+                                    name: name,
+                                    email: email,
+                                    phone: phone,
+                                    college: college,
+                                    department: department,
+                                    skills: skills
+                                }
+                            ]);
+
+                    if (profileError) {
+                        throw profileError;
+                    }
+                }
+
+                message.textContent =
+                    "Account created successfully!";
+
+                message.className = "message success";
+
+                setTimeout(function() {
+                    window.location.href = "student-login.html";
+                }, 1500);
+
+            } catch (error) {
+
+                message.textContent =
+                    error.message || "Signup failed.";
+
+                message.className = "message error";
+
+                signupButton.disabled = false;
+                signupButton.textContent = "Create Account";
+            }
+        });
+</script>
+
+</body>
+</html>

@@ -1,11 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
     <title>Student Profile - Smart Campus Placement Portal</title>
 
+    <!-- Supabase -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <!-- Supabase Configuration -->
+    <script src="../supabase-config.js"></script>
+
+
     <style>
+
         * {
             box-sizing: border-box;
             margin: 0;
@@ -13,138 +26,531 @@
             font-family: Arial, sans-serif;
         }
 
+
         body {
+
             background: #f4f7fb;
+
             min-height: 100vh;
+
             padding: 30px 0;
+
         }
+
 
         .container {
+
             width: 92%;
+
             max-width: 800px;
+
             margin: auto;
+
         }
+
 
         .profile-card {
+
             background: white;
+
             padding: 30px;
+
             border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+
+            box-shadow:
+                0 4px 15px rgba(0,0,0,0.1);
+
         }
+
 
         .profile-icon {
+
             width: 90px;
+
             height: 90px;
+
             margin: 0 auto 20px;
+
             border-radius: 50%;
+
             background: #0d47a1;
+
             color: white;
+
             display: flex;
+
             align-items: center;
+
             justify-content: center;
+
             font-size: 38px;
+
         }
+
 
         h2 {
+
             text-align: center;
+
             color: #0d47a1;
+
             margin-bottom: 25px;
+
         }
+
 
         .info {
+
             margin-bottom: 18px;
+
             padding: 12px;
+
             background: #f4f7fb;
+
             border-radius: 6px;
+
         }
+
 
         .info strong {
+
             display: block;
+
             margin-bottom: 5px;
+
             color: #0d47a1;
+
         }
+
+
+        .info span {
+
+            color: #333;
+
+        }
+
 
         .buttons {
+
             text-align: center;
+
             margin-top: 25px;
+
         }
+
 
         .btn {
+
             display: inline-block;
+
             padding: 12px 18px;
+
             margin: 5px;
+
             border-radius: 6px;
+
             text-decoration: none;
+
             background: #0d47a1;
+
             color: white;
+
         }
 
+
         .back {
+
             background: #777;
+
         }
+
+
+        .message {
+
+            text-align: center;
+
+            padding: 20px;
+
+            color: #555;
+
+        }
+
+
+        .error {
+
+            color: #c62828;
+
+        }
+
     </style>
+
 </head>
+
 
 <body>
 
+
 <div class="container">
+
 
     <div class="profile-card">
 
-        <div class="profile-icon">👩‍🎓</div>
 
-        <h2>My Profile</h2>
-
-        <div class="info">
-            <strong>Full Name</strong>
-            Hema
+        <div class="profile-icon">
+            👩‍🎓
         </div>
 
-        <div class="info">
-            <strong>Email</strong>
-            hema@gmail.com
+
+        <h2>
+            My Profile
+        </h2>
+
+
+        <div
+            id="loadingMessage"
+            class="message"
+        >
+            Loading profile...
         </div>
 
-        <div class="info">
-            <strong>Phone Number</strong>
-            9876543210
+
+        <div id="profileData"
+             style="display:none;">
+
+
+            <div class="info">
+
+                <strong>
+                    Full Name
+                </strong>
+
+                <span id="studentName">
+                </span>
+
+            </div>
+
+
+            <div class="info">
+
+                <strong>
+                    Email
+                </strong>
+
+                <span id="studentEmail">
+                </span>
+
+            </div>
+
+
+            <div class="info">
+
+                <strong>
+                    Phone Number
+                </strong>
+
+                <span id="studentPhone">
+                </span>
+
+            </div>
+
+
+            <div class="info">
+
+                <strong>
+                    Department
+                </strong>
+
+                <span id="studentDepartment">
+                </span>
+
+            </div>
+
+
+            <div class="info">
+
+                <strong>
+                    College
+                </strong>
+
+                <span id="studentCollege">
+                </span>
+
+            </div>
+
+
+            <div class="info">
+
+                <strong>
+                    Skills
+                </strong>
+
+                <span id="studentSkills">
+                </span>
+
+            </div>
+
+
+            <div class="buttons">
+
+                <a
+                    href="update-profile.html"
+                    class="btn"
+                >
+                    ✏️ Update Profile
+                </a>
+
+
+                <a
+                    href="student-dashboard.html"
+                    class="btn back"
+                >
+                    ← Back to Dashboard
+                </a>
+
+            </div>
+
+
         </div>
 
-        <div class="info">
-            <strong>Course</strong>
-            BCA
-        </div>
-
-        <div class="info">
-            <strong>College</strong>
-            Your College Name
-        </div>
-
-        <div class="info">
-            <strong>Skills</strong>
-            HTML, CSS, JavaScript, Python
-        </div>
-
-        <div class="info">
-            <strong>Address</strong>
-            Tamil Nadu, India
-        </div>
-
-        <div class="buttons">
-
-            <a href="update-profile.html" class="btn">
-                ✏️ Update Profile
-            </a>
-
-            <a href="student-dashboard.html" class="btn back">
-                ← Back to Dashboard
-            </a>
-
-        </div>
 
     </div>
 
+
 </div>
 
+
+
+<script>
+
+
+/*
+====================================================
+LOAD LOGGED-IN STUDENT PROFILE
+====================================================
+*/
+
+async function loadStudentProfile() {
+
+
+    const loadingMessage =
+        document.getElementById(
+            "loadingMessage"
+        );
+
+
+    const profileData =
+        document.getElementById(
+            "profileData"
+        );
+
+
+    /*
+    GET CURRENT LOGGED-IN USER
+    */
+
+    const {
+
+        data: {
+            user
+        },
+
+        error: userError
+
+    } = await supabaseClient.auth.getUser();
+
+
+    /*
+    USER NOT LOGGED IN
+    */
+
+    if (userError || !user) {
+
+        console.error(
+            "User authentication error:",
+            userError
+        );
+
+
+        loadingMessage.innerHTML =
+            '<span class="error">' +
+            'You are not logged in.' +
+            '</span>';
+
+
+        setTimeout(function() {
+
+            window.location.href =
+                "student-login.html";
+
+        }, 1500);
+
+
+        return;
+
+    }
+
+
+    /*
+    SHOW USER ID IN CONSOLE
+    */
+
+    console.log(
+        "Logged-in user ID:",
+        user.id
+    );
+
+
+    console.log(
+        "Logged-in user email:",
+        user.email
+    );
+
+
+    /*
+    GET STUDENT PROFILE
+    USING THE LOGGED-IN USER ID
+    */
+
+    const {
+
+        data: student,
+
+        error: profileError
+
+    } = await supabaseClient
+
+        .from("students")
+
+        .select(
+            "name, email, phone, college, department, skills"
+        )
+
+        .eq(
+            "user_id",
+            user.id
+        )
+
+        .maybeSingle();
+
+
+    /*
+    PROFILE FETCH ERROR
+    */
+
+    if (profileError) {
+
+        console.error(
+            "Profile loading error:",
+            profileError
+        );
+
+
+        loadingMessage.innerHTML =
+            '<span class="error">' +
+            'Unable to load your profile.<br><br>' +
+            profileError.message +
+            '</span>';
+
+
+        return;
+
+    }
+
+
+    /*
+    PROFILE DOES NOT EXIST
+    */
+
+    if (!student) {
+
+        loadingMessage.innerHTML =
+            '<span class="error">' +
+            'Student profile not found.<br><br>' +
+            'Please complete your student registration.' +
+            '</span>';
+
+
+        return;
+
+    }
+
+
+    /*
+    DISPLAY STUDENT INFORMATION
+    */
+
+    document.getElementById(
+        "studentName"
+    ).textContent =
+        student.name || "Not provided";
+
+
+    document.getElementById(
+        "studentEmail"
+    ).textContent =
+        student.email || user.email || "Not provided";
+
+
+    document.getElementById(
+        "studentPhone"
+    ).textContent =
+        student.phone || "Not provided";
+
+
+    document.getElementById(
+        "studentDepartment"
+    ).textContent =
+        student.department || "Not provided";
+
+
+    document.getElementById(
+        "studentCollege"
+    ).textContent =
+        student.college || "Not provided";
+
+
+    document.getElementById(
+        "studentSkills"
+    ).textContent =
+        student.skills || "Not provided";
+
+
+    /*
+    HIDE LOADING MESSAGE
+    */
+
+    loadingMessage.style.display =
+        "none";
+
+
+    /*
+    SHOW PROFILE
+    */
+
+    profileData.style.display =
+        "block";
+
+
+    console.log(
+        "Student profile loaded successfully:",
+        student
+    );
+
+}
+
+
+/*
+====================================================
+RUN PROFILE FUNCTION
+====================================================
+*/
+
+loadStudentProfile();
+
+
+</script>
+
+
 </body>
+
 </html>

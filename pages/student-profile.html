@@ -28,158 +28,146 @@
 
 
         body {
-
             background: #f4f7fb;
-
             min-height: 100vh;
-
             padding: 30px 0;
-
         }
 
 
         .container {
-
             width: 92%;
-
             max-width: 800px;
-
             margin: auto;
-
         }
 
 
         .profile-card {
-
             background: white;
-
             padding: 30px;
-
             border-radius: 12px;
-
-            box-shadow:
-                0 4px 15px rgba(0,0,0,0.1);
-
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
         }
 
 
         .profile-icon {
-
             width: 90px;
-
             height: 90px;
-
             margin: 0 auto 20px;
-
             border-radius: 50%;
-
             background: #0d47a1;
-
             color: white;
-
             display: flex;
-
             align-items: center;
-
             justify-content: center;
-
             font-size: 38px;
-
         }
 
 
         h2 {
-
             text-align: center;
-
             color: #0d47a1;
-
             margin-bottom: 25px;
-
-        }
-
-
-        .info {
-
-            margin-bottom: 18px;
-
-            padding: 12px;
-
-            background: #f4f7fb;
-
-            border-radius: 6px;
-
-        }
-
-
-        .info strong {
-
-            display: block;
-
-            margin-bottom: 5px;
-
-            color: #0d47a1;
-
-        }
-
-
-        .info span {
-
-            color: #333;
-
-        }
-
-
-        .buttons {
-
-            text-align: center;
-
-            margin-top: 25px;
-
-        }
-
-
-        .btn {
-
-            display: inline-block;
-
-            padding: 12px 18px;
-
-            margin: 5px;
-
-            border-radius: 6px;
-
-            text-decoration: none;
-
-            background: #0d47a1;
-
-            color: white;
-
-        }
-
-
-        .back {
-
-            background: #777;
-
         }
 
 
         .message {
-
             text-align: center;
-
             padding: 20px;
-
             color: #555;
-
         }
 
 
         .error {
-
             color: #c62828;
+        }
 
+
+        .info {
+            margin-bottom: 18px;
+            padding: 12px;
+            background: #f4f7fb;
+            border-radius: 6px;
+        }
+
+
+        .info strong {
+            display: block;
+            margin-bottom: 5px;
+            color: #0d47a1;
+        }
+
+
+        .info span {
+            color: #333;
+        }
+
+
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+
+        .form-group label {
+            display: block;
+            margin-bottom: 7px;
+            color: #0d47a1;
+            font-weight: bold;
+        }
+
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 15px;
+        }
+
+
+        .form-group textarea {
+            min-height: 90px;
+            resize: vertical;
+        }
+
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #0d47a1;
+        }
+
+
+        .buttons {
+            text-align: center;
+            margin-top: 25px;
+        }
+
+
+        .btn {
+            display: inline-block;
+            padding: 12px 18px;
+            margin: 5px;
+            border-radius: 6px;
+            text-decoration: none;
+            background: #0d47a1;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 15px;
+        }
+
+
+        .back {
+            background: #777;
+        }
+
+
+        .success-message {
+            text-align: center;
+            color: #2e7d32;
+            margin-top: 15px;
+            font-weight: bold;
         }
 
     </style>
@@ -192,7 +180,6 @@
 
 <div class="container">
 
-
     <div class="profile-card">
 
 
@@ -201,21 +188,27 @@
         </div>
 
 
-        <h2>
+        <h2 id="pageTitle">
             My Profile
         </h2>
 
+
+        <!-- Loading -->
 
         <div
             id="loadingMessage"
             class="message"
         >
-            Loading profile...
+            Checking your profile...
         </div>
 
 
-        <div id="profileData"
-             style="display:none;">
+        <!-- EXISTING PROFILE -->
+
+        <div
+            id="existingProfile"
+            style="display:none;"
+        >
 
 
             <div class="info">
@@ -313,8 +306,157 @@
         </div>
 
 
-    </div>
+        <!-- CREATE NEW PROFILE -->
 
+        <div
+            id="createProfile"
+            style="display:none;"
+        >
+
+
+            <p
+                style="
+                    text-align:center;
+                    color:#555;
+                    margin-bottom:25px;
+                "
+            >
+                Welcome! Your student profile has not been
+                created yet. Please enter your details below.
+            </p>
+
+
+            <form id="profileForm">
+
+
+                <div class="form-group">
+
+                    <label for="name">
+                        Full Name
+                    </label>
+
+                    <input
+                        type="text"
+                        id="name"
+                        placeholder="Enter your full name"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="email">
+                        Email
+                    </label>
+
+                    <input
+                        type="email"
+                        id="email"
+                        readonly
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="phone">
+                        Phone Number
+                    </label>
+
+                    <input
+                        type="tel"
+                        id="phone"
+                        placeholder="Enter your phone number"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="college">
+                        College
+                    </label>
+
+                    <input
+                        type="text"
+                        id="college"
+                        placeholder="Enter your college name"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="department">
+                        Department
+                    </label>
+
+                    <input
+                        type="text"
+                        id="department"
+                        placeholder="Example: BCA"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="skills">
+                        Skills
+                    </label>
+
+                    <textarea
+                        id="skills"
+                        placeholder="Example: HTML, CSS, JavaScript, Python"
+                        required
+                    ></textarea>
+
+                </div>
+
+
+                <div class="buttons">
+
+                    <button
+                        type="submit"
+                        class="btn"
+                        id="createProfileBtn"
+                    >
+                        Create Profile
+                    </button>
+
+
+                    <a
+                        href="student-dashboard.html"
+                        class="btn back"
+                    >
+                        ← Back to Dashboard
+                    </a>
+
+                </div>
+
+
+                <div
+                    id="successMessage"
+                    class="success-message"
+                ></div>
+
+
+            </form>
+
+
+        </div>
+
+
+    </div>
 
 </div>
 
@@ -325,11 +467,15 @@
 
 /*
 ====================================================
-LOAD LOGGED-IN STUDENT PROFILE
+GET LOGGED-IN USER
 ====================================================
 */
 
-async function loadStudentProfile() {
+let currentUser = null;
+
+
+
+async function loadProfile() {
 
 
     const loadingMessage =
@@ -338,14 +484,8 @@ async function loadStudentProfile() {
         );
 
 
-    const profileData =
-        document.getElementById(
-            "profileData"
-        );
-
-
     /*
-    GET CURRENT LOGGED-IN USER
+    GET CURRENT AUTHENTICATED USER
     */
 
     const {
@@ -366,7 +506,7 @@ async function loadStudentProfile() {
     if (userError || !user) {
 
         console.error(
-            "User authentication error:",
+            "Authentication error:",
             userError
         );
 
@@ -391,8 +531,11 @@ async function loadStudentProfile() {
 
 
     /*
-    SHOW USER ID IN CONSOLE
+    SAVE CURRENT USER
     */
+
+    currentUser = user;
+
 
     console.log(
         "Logged-in user ID:",
@@ -401,20 +544,18 @@ async function loadStudentProfile() {
 
 
     console.log(
-        "Logged-in user email:",
+        "Logged-in email:",
         user.email
     );
 
 
     /*
-    GET STUDENT PROFILE
-    USING THE LOGGED-IN USER ID
+    SEARCH FOR THIS USER'S PROFILE
     */
 
     const {
 
         data: student,
-
         error: profileError
 
     } = await supabaseClient
@@ -434,22 +575,43 @@ async function loadStudentProfile() {
 
 
     /*
-    PROFILE FETCH ERROR
+    PROFILE QUERY ERROR
     */
 
     if (profileError) {
 
         console.error(
-            "Profile loading error:",
+            "Profile query error:",
             profileError
         );
 
 
         loadingMessage.innerHTML =
             '<span class="error">' +
-            'Unable to load your profile.<br><br>' +
+            'Unable to check your profile.<br><br>' +
             profileError.message +
             '</span>';
+
+
+        return;
+
+    }
+
+
+    /*
+    PROFILE EXISTS
+    */
+
+    if (student) {
+
+        console.log(
+            "Existing student profile found."
+        );
+
+
+        showExistingProfile(
+            student
+        );
 
 
         return;
@@ -461,22 +623,54 @@ async function loadStudentProfile() {
     PROFILE DOES NOT EXIST
     */
 
-    if (!student) {
-
-        loadingMessage.innerHTML =
-            '<span class="error">' +
-            'Student profile not found.<br><br>' +
-            'Please complete your student registration.' +
-            '</span>';
+    console.log(
+        "No student profile found."
+    );
 
 
-        return;
+    showCreateProfileForm(
+        user
+    );
 
-    }
+}
+
+
+
+/*
+====================================================
+SHOW EXISTING PROFILE
+====================================================
+*/
+
+function showExistingProfile(student) {
+
+
+    document.getElementById(
+        "loadingMessage"
+    ).style.display =
+        "none";
+
+
+    document.getElementById(
+        "createProfile"
+    ).style.display =
+        "none";
+
+
+    document.getElementById(
+        "existingProfile"
+    ).style.display =
+        "block";
+
+
+    document.getElementById(
+        "pageTitle"
+    ).textContent =
+        "My Profile";
 
 
     /*
-    DISPLAY STUDENT INFORMATION
+    DISPLAY SAVED DETAILS
     */
 
     document.getElementById(
@@ -488,64 +682,284 @@ async function loadStudentProfile() {
     document.getElementById(
         "studentEmail"
     ).textContent =
-        student.email || user.email || "Not provided";
+        student.email ||
+        currentUser.email ||
+        "Not provided";
 
 
     document.getElementById(
         "studentPhone"
     ).textContent =
-        student.phone || "Not provided";
+        student.phone ||
+        "Not provided";
 
 
     document.getElementById(
         "studentDepartment"
     ).textContent =
-        student.department || "Not provided";
+        student.department ||
+        "Not provided";
 
 
     document.getElementById(
         "studentCollege"
     ).textContent =
-        student.college || "Not provided";
+        student.college ||
+        "Not provided";
 
 
     document.getElementById(
         "studentSkills"
     ).textContent =
-        student.skills || "Not provided";
-
-
-    /*
-    HIDE LOADING MESSAGE
-    */
-
-    loadingMessage.style.display =
-        "none";
-
-
-    /*
-    SHOW PROFILE
-    */
-
-    profileData.style.display =
-        "block";
-
-
-    console.log(
-        "Student profile loaded successfully:",
-        student
-    );
+        student.skills ||
+        "Not provided";
 
 }
 
 
+
 /*
 ====================================================
-RUN PROFILE FUNCTION
+SHOW CREATE PROFILE FORM
 ====================================================
 */
 
-loadStudentProfile();
+function showCreateProfileForm(user) {
+
+
+    document.getElementById(
+        "loadingMessage"
+    ).style.display =
+        "none";
+
+
+    document.getElementById(
+        "existingProfile"
+    ).style.display =
+        "none";
+
+
+    document.getElementById(
+        "createProfile"
+    ).style.display =
+        "block";
+
+
+    document.getElementById(
+        "pageTitle"
+    ).textContent =
+        "Create Your Profile";
+
+
+    /*
+    AUTOMATICALLY SHOW LOGIN EMAIL
+    */
+
+    document.getElementById(
+        "email"
+    ).value =
+        user.email || "";
+
+}
+
+
+
+/*
+====================================================
+CREATE PROFILE
+====================================================
+*/
+
+document
+    .getElementById("profileForm")
+    .addEventListener(
+        "submit",
+        async function(event) {
+
+
+            event.preventDefault();
+
+
+            const button =
+                document.getElementById(
+                    "createProfileBtn"
+                );
+
+
+            const successMessage =
+                document.getElementById(
+                    "successMessage"
+                );
+
+
+            /*
+            GET FORM VALUES
+            */
+
+            const name =
+                document
+                    .getElementById("name")
+                    .value
+                    .trim();
+
+
+            const email =
+                currentUser.email;
+
+
+            const phone =
+                document
+                    .getElementById("phone")
+                    .value
+                    .trim();
+
+
+            const college =
+                document
+                    .getElementById("college")
+                    .value
+                    .trim();
+
+
+            const department =
+                document
+                    .getElementById("department")
+                    .value
+                    .trim();
+
+
+            const skills =
+                document
+                    .getElementById("skills")
+                    .value
+                    .trim();
+
+
+            /*
+            DISABLE BUTTON
+            */
+
+            button.disabled = true;
+
+            button.textContent =
+                "Creating Profile...";
+
+
+            successMessage.textContent =
+                "";
+
+
+            /*
+            INSERT PROFILE
+            */
+
+            const {
+
+                data: insertedStudent,
+                error: insertError
+
+            } = await supabaseClient
+
+                .from("students")
+
+                .insert({
+
+                    user_id:
+                        currentUser.id,
+
+                    name:
+                        name,
+
+                    email:
+                        email,
+
+                    phone:
+                        phone,
+
+                    college:
+                        college,
+
+                    department:
+                        department,
+
+                    skills:
+                        skills
+
+                })
+
+                .select()
+                .single();
+
+
+            /*
+            INSERT ERROR
+            */
+
+            if (insertError) {
+
+                console.error(
+                    "Profile creation error:",
+                    insertError
+                );
+
+
+                alert(
+                    "Profile could not be created:\n\n" +
+                    insertError.message
+                );
+
+
+                button.disabled =
+                    false;
+
+
+                button.textContent =
+                    "Create Profile";
+
+
+                return;
+
+            }
+
+
+            /*
+            PROFILE CREATED
+            */
+
+            console.log(
+                "New student profile created:",
+                insertedStudent
+            );
+
+
+            successMessage.textContent =
+                "Profile created successfully!";
+
+
+            /*
+            LOAD THE NEW PROFILE
+            */
+
+            setTimeout(function() {
+
+                showExistingProfile(
+                    insertedStudent
+                );
+
+            }, 1000);
+
+        }
+    );
+
+
+
+/*
+====================================================
+START
+====================================================
+*/
+
+loadProfile();
 
 
 </script>

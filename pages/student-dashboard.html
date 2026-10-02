@@ -1,11 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
     <title>Student Dashboard - Smart Campus Placement Portal</title>
 
+    <!-- Supabase -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="../supabase-config.js"></script>
+
     <style>
+
         * {
             box-sizing: border-box;
             margin: 0;
@@ -76,98 +86,474 @@
             color: white;
             text-decoration: none;
             border-radius: 6px;
+            border: none;
+            cursor: pointer;
+            font-size: 15px;
         }
 
         .logout {
             background: #c62828;
         }
+
     </style>
+
 </head>
+
 
 <body>
 
+
 <div class="container">
 
+
     <div class="welcome">
-        <h2>Welcome, Student 👋</h2>
-        <p>Student Dashboard</p>
+
+        <h2>
+            Welcome, Student 👋
+        </h2>
+
+        <p>
+            Student Dashboard
+        </p>
+
     </div>
+
 
     <div class="cards">
 
-        <div class="card">
-            <div class="icon">👤</div>
 
-            <h3>My Profile</h3>
+        <!-- PROFILE -->
+
+        <div class="card">
+
+            <div class="icon">
+                👤
+            </div>
+
+            <h3>
+                My Profile
+            </h3>
 
             <p>
                 View and update your student profile.
             </p>
 
-            <a href="student-profile.html" class="btn">
+            <a
+                href="student-profile.html"
+                class="btn"
+            >
                 Open Profile
             </a>
+
         </div>
 
-        <div class="card">
-            <div class="icon">💼</div>
 
-            <h3>Available Jobs</h3>
+        <!-- JOBS -->
+
+        <div class="card">
+
+            <div class="icon">
+                💼
+            </div>
+
+            <h3>
+                Available Jobs
+            </h3>
 
             <p>
                 View current campus job opportunities.
             </p>
 
-            <a href="student-jobs.html" class="btn">
+            <a
+                href="student-jobs.html"
+                class="btn"
+            >
                 View Jobs
             </a>
+
         </div>
 
-        <div class="card">
-            <div class="icon">📋</div>
 
-            <h3>Applied Jobs</h3>
+        <!-- APPLIED JOBS -->
+
+        <div class="card">
+
+            <div class="icon">
+                📋
+            </div>
+
+            <h3>
+                Applied Jobs
+            </h3>
 
             <p>
                 Check the jobs you have applied for.
             </p>
 
-            <a href="applied-jobs.html" class="btn">
+            <a
+                href="applied-jobs.html"
+                class="btn"
+            >
                 View Applications
             </a>
+
         </div>
 
-        <div class="card">
-            <div class="icon">📊</div>
 
-            <h3>Placement Status</h3>
+        <!-- PLACEMENT STATUS -->
+
+        <div class="card">
+
+            <div class="icon">
+                📊
+            </div>
+
+            <h3>
+                Placement Status
+            </h3>
 
             <p>
                 Check your current placement status.
             </p>
 
-            <a href="student-placement-status.html" class="btn">
+            <a
+                href="student-placement-status.html"
+                class="btn"
+            >
                 View Status
             </a>
+
         </div>
 
-        <div class="card">
-            <div class="icon">🚪</div>
 
-            <h3>Logout</h3>
+        <!-- LOGOUT -->
+
+        <div class="card">
+
+            <div class="icon">
+                🚪
+            </div>
+
+            <h3>
+                Logout
+            </h3>
 
             <p>
                 Return to the home page.
             </p>
 
-            <a href="../index.html" class="btn logout">
+            <button
+                id="logoutBtn"
+                class="btn logout"
+            >
                 Logout
-            </a>
+            </button>
+
         </div>
+
 
     </div>
 
+
 </div>
 
+
+
+<script>
+
+
+/*
+====================================================
+CHECK LOGIN AND CREATE STUDENT PROFILE
+====================================================
+*/
+
+async function checkLoginAndCreateProfile() {
+
+
+    /*
+    GET CURRENT AUTHENTICATED USER
+    */
+
+    const {
+
+        data: {
+            user
+        },
+
+        error: userError
+
+    } = await supabaseClient.auth.getUser();
+
+
+    /*
+    IF USER IS NOT LOGGED IN
+    */
+
+    if (userError || !user) {
+
+        console.error(
+            "Authentication error:",
+            userError
+        );
+
+        window.location.href =
+            "student-login.html";
+
+        return;
+
+    }
+
+
+    /*
+    SHOW USER ID IN BROWSER CONSOLE
+    */
+
+    console.log(
+        "Logged in user:",
+        user.id
+    );
+
+
+    /*
+    CHECK WHETHER STUDENT PROFILE
+    ALREADY EXISTS
+    */
+
+    const {
+
+        data: existingStudent,
+
+        error: checkError
+
+    } = await supabaseClient
+
+        .from("students")
+
+        .select("id")
+
+        .eq(
+            "user_id",
+            user.id
+        )
+
+        .maybeSingle();
+
+
+    /*
+    CHECK PROFILE ERROR
+    */
+
+    if (checkError) {
+
+        console.error(
+            "Profile check error:",
+            checkError
+        );
+
+        alert(
+            "Could not check student profile:\n\n" +
+            checkError.message
+        );
+
+        return;
+
+    }
+
+
+    /*
+    PROFILE ALREADY EXISTS
+    */
+
+    if (existingStudent) {
+
+        console.log(
+            "Student profile already exists."
+        );
+
+        return;
+
+    }
+
+
+    /*
+    GET PROFILE DATA SAVED
+    DURING SIGNUP
+    */
+
+    const savedProfile =
+        localStorage.getItem(
+            "pendingStudentProfile"
+        );
+
+
+    /*
+    NO PROFILE DATA
+    */
+
+    if (!savedProfile) {
+
+        console.log(
+            "No pending student profile found."
+        );
+
+        return;
+
+    }
+
+
+    /*
+    CONVERT SAVED DATA
+    */
+
+    const studentProfile =
+        JSON.parse(
+            savedProfile
+        );
+
+
+    /*
+    INSERT STUDENT PROFILE
+    */
+
+    const {
+
+        data: insertedStudent,
+
+        error: insertError
+
+    } = await supabaseClient
+
+        .from("students")
+
+        .insert({
+
+            user_id:
+                user.id,
+
+            name:
+                studentProfile.name,
+
+            email:
+                studentProfile.email,
+
+            phone:
+                studentProfile.phone,
+
+            college:
+                studentProfile.college,
+
+            department:
+                studentProfile.department,
+
+            skills:
+                studentProfile.skills
+
+        })
+
+        .select()
+
+        .single();
+
+
+    /*
+    CHECK INSERT ERROR
+    */
+
+    if (insertError) {
+
+        console.error(
+            "Student profile insert failed:",
+            insertError
+        );
+
+        alert(
+            "Student profile could not be created:\n\n" +
+            insertError.message
+        );
+
+        return;
+
+    }
+
+
+    /*
+    PROFILE CREATED SUCCESSFULLY
+    */
+
+    console.log(
+        "Student profile created:",
+        insertedStudent
+    );
+
+
+    /*
+    REMOVE TEMPORARY PROFILE DATA
+    */
+
+    localStorage.removeItem(
+        "pendingStudentProfile"
+    );
+
+
+    alert(
+        "Student profile created successfully!"
+    );
+
+}
+
+
+/*
+====================================================
+RUN
+====================================================
+*/
+
+checkLoginAndCreateProfile();
+
+
+
+/*
+====================================================
+LOGOUT
+====================================================
+*/
+
+document
+    .getElementById("logoutBtn")
+    .addEventListener(
+        "click",
+        async function () {
+
+
+            const {
+                error
+            } =
+            await supabaseClient.auth.signOut();
+
+
+            if (error) {
+
+                alert(
+                    "Logout failed: " +
+                    error.message
+                );
+
+                return;
+
+            }
+
+
+            window.location.href =
+                "../index.html";
+
+        }
+    );
+
+
+</script>
+
+
 </body>
+
 </html>

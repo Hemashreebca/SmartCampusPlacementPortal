@@ -56,14 +56,29 @@
             font-weight: bold;
         }
 
-        .pending {
-            background: #fff3cd;
-            color: #856404;
+        .applied {
+            background: #cfe2ff;
+            color: #084298;
         }
 
         .selected {
             background: #d4edda;
             color: #155724;
+        }
+
+        .rejected {
+            background: #f8d7da;
+            color: #842029;
+        }
+
+        .empty-message {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            text-align: center;
+            color: #555;
+            font-size: 16px;
         }
 
         .back-btn {
@@ -84,71 +99,94 @@
 
     <h2>📋 My Applied Jobs</h2>
 
-    <div class="application-card">
-
-        <h3>Web Developer</h3>
-
-        <p>
-            <strong>Company:</strong>
-            ABC Technologies
-        </p>
-
-        <p>
-            <strong>Location:</strong>
-            Chennai
-        </p>
-
-        <p>
-            <strong>Salary:</strong>
-            5 LPA
-        </p>
-
-        <p>
-            <strong>Applied Date:</strong>
-            15-08-2026
-        </p>
-
-        <span class="status pending">
-            Application Pending
-        </span>
-
-    </div>
-
-    <div class="application-card">
-
-        <h3>Data Analyst</h3>
-
-        <p>
-            <strong>Company:</strong>
-            XYZ Solutions
-        </p>
-
-        <p>
-            <strong>Location:</strong>
-            Bangalore
-        </p>
-
-        <p>
-            <strong>Salary:</strong>
-            6 LPA
-        </p>
-
-        <p>
-            <strong>Applied Date:</strong>
-            16-08-2026
-        </p>
-
-        <span class="status selected">
-            Selected ✅
-        </span>
-
-    </div>
+    <div id="applicationsContainer"></div>
 
     <a href="student-dashboard.html" class="back-btn">
         ← Back to Dashboard
     </a>
 
 </div>
+
+<script>
+
+    const applicationsContainer =
+        document.getElementById("applicationsContainer");
+
+    function loadApplications() {
+
+        const savedApplications =
+            JSON.parse(localStorage.getItem("studentApplications")) || [];
+
+        applicationsContainer.innerHTML = "";
+
+        if (savedApplications.length === 0) {
+
+            applicationsContainer.innerHTML = `
+                <div class="empty-message">
+                    <p>📭 You have not applied for any jobs yet.</p>
+                    <p style="margin-top:10px;">
+                        Go to <strong>Available Jobs</strong> and apply for a job.
+                    </p>
+                </div>
+            `;
+
+            return;
+        }
+
+        savedApplications.forEach(function(application) {
+
+            let status = application.status || "Applied";
+
+            let statusClass = "applied";
+
+            if (status.toLowerCase() === "selected") {
+                statusClass = "selected";
+            }
+
+            if (status.toLowerCase() === "rejected") {
+                statusClass = "rejected";
+            }
+
+            const card = document.createElement("div");
+
+            card.className = "application-card";
+
+            card.innerHTML = `
+                <h3>${application.jobName || "Job"}</h3>
+
+                <p>
+                    <strong>Company:</strong>
+                    ${application.companyName || "Not specified"}
+                </p>
+
+                <p>
+                    <strong>Location:</strong>
+                    ${application.location || "Not specified"}
+                </p>
+
+                <p>
+                    <strong>Salary:</strong>
+                    ${application.salary || "Not specified"}
+                </p>
+
+                <p>
+                    <strong>Applied Date:</strong>
+                    ${application.appliedDate || "Recently"}
+                </p>
+
+                <span class="status ${statusClass}">
+                    ${status}
+                </span>
+            `;
+
+            applicationsContainer.appendChild(card);
+
+        });
+    }
+
+    loadApplications();
+
+</script>
 
 </body>
 </html>

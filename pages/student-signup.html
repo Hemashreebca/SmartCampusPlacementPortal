@@ -229,31 +229,54 @@
 <script src="../supabase-config.js"></script>
 
 <script>
+
     document
         .getElementById("studentSignupForm")
         .addEventListener("submit", async function(event) {
 
             event.preventDefault();
 
-            const name = document.getElementById("name").value.trim();
-            const email = document.getElementById("email").value.trim();
-            const phone = document.getElementById("phone").value.trim();
-            const college = document.getElementById("college").value.trim();
-            const department = document.getElementById("department").value.trim();
-            const skills = document.getElementById("skills").value.trim();
-            const password = document.getElementById("password").value;
+            const name =
+                document.getElementById("name").value.trim();
+
+            const email =
+                document.getElementById("email").value.trim();
+
+            const phone =
+                document.getElementById("phone").value.trim();
+
+            const college =
+                document.getElementById("college").value.trim();
+
+            const department =
+                document.getElementById("department").value.trim();
+
+            const skills =
+                document.getElementById("skills").value.trim();
+
+            const password =
+                document.getElementById("password").value;
+
             const confirmPassword =
                 document.getElementById("confirmPassword").value;
 
-            const message = document.getElementById("message");
-            const signupButton = document.getElementById("signupButton");
+            const message =
+                document.getElementById("message");
+
+            const signupButton =
+                document.getElementById("signupButton");
 
             message.textContent = "";
             message.className = "message";
 
             if (password !== confirmPassword) {
-                message.textContent = "Passwords do not match.";
-                message.className = "message error";
+
+                message.textContent =
+                    "Passwords do not match.";
+
+                message.className =
+                    "message error";
+
                 return;
             }
 
@@ -263,49 +286,67 @@
             try {
 
                 /*
-                 * Create Supabase Authentication account
+                 * Store the student's profile temporarily.
+                 *
+                 * The profile will be inserted into the
+                 * students table after authentication.
+                 */
+                const studentProfile = {
+
+                    name: name,
+                    email: email,
+                    phone: phone,
+                    college: college,
+                    department: department,
+                    skills: skills
+
+                };
+
+                localStorage.setItem(
+                    "pendingStudentProfile",
+                    JSON.stringify(studentProfile)
+                );
+
+                /*
+                 * Create Supabase Authentication account.
                  */
                 const { data, error } =
                     await supabaseClient.auth.signUp({
+
                         email: email,
                         password: password
+
                     });
 
                 if (error) {
+
+                    localStorage.removeItem(
+                        "pendingStudentProfile"
+                    );
+
                     throw error;
                 }
 
                 /*
-                 * Save student profile information
+                 * Account created successfully.
+                 *
+                 * Do NOT insert into students table here.
+                 *
+                 * Student Dashboard will create the profile
+                 * using the authenticated user's user_id.
                  */
-                if (data.user) {
-
-                    const { error: profileError } =
-                        await supabaseClient
-                            .from("students")
-                            .insert([
-                                {
-                                    name: name,
-                                    email: email,
-                                    phone: phone,
-                                    college: college,
-                                    department: department,
-                                    skills: skills
-                                }
-                            ]);
-
-                    if (profileError) {
-                        throw profileError;
-                    }
-                }
 
                 message.textContent =
-                    "Account created successfully!";
+                    "Account created successfully! Please login.";
 
-                message.className = "message success";
+                message.className =
+                    "message success";
 
                 setTimeout(function() {
-                    window.location.href = "student-login.html";
+
+                    window.location.href =
+                        "student-login.html";
+
                 }, 1500);
 
             } catch (error) {
@@ -313,12 +354,15 @@
                 message.textContent =
                     error.message || "Signup failed.";
 
-                message.className = "message error";
+                message.className =
+                    "message error";
 
                 signupButton.disabled = false;
                 signupButton.textContent = "Create Account";
             }
+
         });
+
 </script>
 
 </body>

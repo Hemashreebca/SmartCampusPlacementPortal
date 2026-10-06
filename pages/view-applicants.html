@@ -118,10 +118,10 @@
             <tbody>
 
                 <tr>
-                    <td>Hema</td>
-                    <td>hema@gmail.com</td>
+                    <td>Student 1</td>
+                    <td>student1@example.com</td>
                     <td>Web Developer</td>
-                    <td>15-08-2026</td>
+                    <td>01-09-2026</td>
 
                     <td class="status">
                         Pending
@@ -146,10 +146,10 @@
                 </tr>
 
                 <tr>
-                    <td>Lavanya</td>
-                    <td>lavanya@gmail.com</td>
+                    <td>Student 2</td>
+                    <td>student2@example.com</td>
                     <td>Web Developer</td>
-                    <td>16-08-2026</td>
+                    <td>02-09-2026</td>
 
                     <td class="status">
                         Pending
@@ -188,6 +188,7 @@
 <script>
 
 function selectApplicant(button) {
+
     const row = button.closest("tr");
     const status = row.querySelector(".status");
 
@@ -197,6 +198,7 @@ function selectApplicant(button) {
 }
 
 function rejectApplicant(button) {
+
     const row = button.closest("tr");
     const status = row.querySelector(".status");
 
@@ -206,7 +208,9 @@ function rejectApplicant(button) {
 }
 
 function scheduleInterview() {
+
     window.location.href = "schedule-interview.html";
+
 }
 
 </script>

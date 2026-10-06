@@ -56,14 +56,14 @@
             font-weight: bold;
         }
 
-        .selected {
+        .applied {
             background: #d4edda;
             color: #155724;
         }
 
-        .pending {
-            background: #fff3cd;
-            color: #856404;
+        .not-applied {
+            background: #f8d7da;
+            color: #721c24;
         }
 
         .back-btn {
@@ -86,7 +86,7 @@
 
     <div class="status-card">
 
-        <h3>Hema</h3>
+        <h3>Web Developer</h3>
 
         <p>
             <strong>Company:</strong>
@@ -94,24 +94,24 @@
         </p>
 
         <p>
-            <strong>Job Role:</strong>
-            Web Developer
+            <strong>Location:</strong>
+            Chennai
         </p>
 
         <p>
-            <strong>Selection Date:</strong>
-            15-08-2026
+            <strong>Salary:</strong>
+            5 LPA
         </p>
 
-        <span class="status selected">
-            Selected ✅
+        <span id="webDeveloperStatus" class="status not-applied">
+            Not Applied
         </span>
 
     </div>
 
     <div class="status-card">
 
-        <h3>Lavanya</h3>
+        <h3>Data Analyst</h3>
 
         <p>
             <strong>Company:</strong>
@@ -119,26 +119,73 @@
         </p>
 
         <p>
-            <strong>Job Role:</strong>
-            Data Analyst
+            <strong>Location:</strong>
+            Bangalore
         </p>
 
         <p>
-            <strong>Interview Date:</strong>
-            20-08-2026
+            <strong>Salary:</strong>
+            6 LPA
         </p>
 
-        <span class="status pending">
-            Pending ⏳
+        <span id="dataAnalystStatus" class="status not-applied">
+            Not Applied
         </span>
 
     </div>
 
-    <a href="admin-dashboard.html" class="back-btn">
+    <a href="student-dashboard.html" class="back-btn">
         ← Back to Dashboard
     </a>
 
 </div>
+
+<script>
+
+    const applications =
+        JSON.parse(localStorage.getItem("studentApplications")) || [];
+
+    const webDeveloperApplied = applications.some(
+        application => application.jobKey === "webdeveloper"
+    );
+
+    const dataAnalystApplied = applications.some(
+        application => application.jobKey === "dataanalyst"
+    );
+
+    const webStatus =
+        document.getElementById("webDeveloperStatus");
+
+    const dataStatus =
+        document.getElementById("dataAnalystStatus");
+
+
+    if (webDeveloperApplied) {
+
+        webStatus.textContent = "Applied ✅";
+        webStatus.className = "status applied";
+
+    } else {
+
+        webStatus.textContent = "Not Applied";
+        webStatus.className = "status not-applied";
+
+    }
+
+
+    if (dataAnalystApplied) {
+
+        dataStatus.textContent = "Applied ✅";
+        dataStatus.className = "status applied";
+
+    } else {
+
+        dataStatus.textContent = "Not Applied";
+        dataStatus.className = "status not-applied";
+
+    }
+
+</script>
 
 </body>
 </html>
